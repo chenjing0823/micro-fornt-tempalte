@@ -1,3 +1,10 @@
+/*
+ * @Author: jing.chen
+ * @Date: 2021-08-18 15:30:39
+ * @LastEditors: jing.chen
+ * @LastEditTime: 2021-08-18 15:38:35
+ * @Description: 
+ */
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -5,6 +12,8 @@ import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import "./public-path";
+
+import actions from "@/actions"
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
@@ -14,7 +23,12 @@ let instance = null;
  * 渲染函数
  * 两种情况：主应用生命周期钩子中运行 / 微应用单独启动时运行
  */
- function render() {
+ function render(props = {}) {
+  if (props) {
+    // 注入 actions 实例
+    actions.setActions(props);
+  }
+
   // 挂载应用
   instance = new Vue({
     router,

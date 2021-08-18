@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2021-08-11 10:29:34
  * @LastEditors: jing.chen
- * @LastEditTime: 2021-08-16 15:20:34
+ * @LastEditTime: 2021-08-18 20:41:58
  * @Description: 路由
  */
 
@@ -94,12 +94,12 @@ const routes = [
         name: 'reactlist'
       }
     ]
+  },
+  {
+    path: '/vue/communication',
+    name: 'vuecommunication',
+    component: () => import(/* webpackChunkName: "app-layout" */ '@/components/layout/frame.vue')
   }
-  // {
-  //   path: '/vue',
-  //   name: 'vue',
-  //   component: () => import(/* webpackChunkName: "app-layout" */ '@/components/layout/frame.vue')
-  // },
   // {
   //   path: '/vue/list',
   //   name: 'vuelist',

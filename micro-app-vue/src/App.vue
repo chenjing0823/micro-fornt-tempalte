@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2021-08-16 09:19:50
  * @LastEditors: jing.chen
- * @LastEditTime: 2021-08-16 10:32:34
+ * @LastEditTime: 2021-08-18 20:40:01
  * @Description: 
 -->
 <template>
@@ -17,6 +17,7 @@
       active-text-color="#ffd04b">
       <el-menu-item index="/">主页</el-menu-item>
       <el-menu-item index="/list">列表页</el-menu-item>
+      <el-menu-item index="/communication">通信页</el-menu-item>
     </el-menu>
     <router-view/>
   </div>

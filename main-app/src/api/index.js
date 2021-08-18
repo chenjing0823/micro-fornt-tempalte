@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2021-08-16 09:52:44
  * @LastEditors: jing.chen
- * @LastEditTime: 2021-08-16 15:09:15
+ * @LastEditTime: 2021-08-18 20:47:21
  * @Description: mock接口
  */
 const menuList = [
@@ -24,6 +24,13 @@ const menuList = [
       { alias: 'vuehome', path: '/vue', name: '主页', subMenuList: [], icon: 'el-icon-s-help' },
       { alias: 'vuelist', path: '/vue/list', name: '列表', subMenuList: [], icon: 'el-icon-help' }
     ],
+    icon: 'el-icon-s-help'
+  },
+  {
+    alias: 'vuecommunication',
+    name: 'vue微应用通信页',
+    path: '/vue/communication',
+    subMenuList: [],
     icon: 'el-icon-s-help'
   },
   {

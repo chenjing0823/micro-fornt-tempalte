@@ -2,14 +2,14 @@
  * @Author: jing.chen
  * @Date: 2021-08-11 11:14:49
  * @LastEditors: jing.chen
- * @LastEditTime: 2021-08-18 13:40:04
+ * @LastEditTime: 2021-08-18 21:12:32
  * @Description: 主布局
 -->
 <template>
   <el-container class="layout-index">
     <el-header class="layout-index-header">
-      <div>杭州xxx有限公司</div>
-      <user-block></user-block>
+      <corp-block v-if="refresh"></corp-block>
+      <user-block v-if="refresh"></user-block>
     </el-header>
     <el-container class="layout-index-container">
       <el-aside
@@ -36,20 +36,22 @@
 <script>
 import FrameSidebar from '@/components/layout/frame-sidebar.vue' // 侧边栏
 
-import userBlock from './components/user-block.vue'
-
 import { getMenu } from '@/api/index'
 
-import actions from '@/shared/actions'
+import actions from '@/actions'
+import UserBlock from './components/user-block.vue'
+import CorpBlock from './components/corp-block.vue'
 export default {
   name: 'index',
 
   components: {
     FrameSidebar,
-    userBlock
+    UserBlock,
+    CorpBlock
   },
   data () {
     return {
+      refresh: true,
       menuList: [],
       isSideBarExtend: true // 侧边栏展开
     }
@@ -61,13 +63,23 @@ export default {
     // 注册一个观察者函数
     actions.onGlobalStateChange((state, prevState) => {
       // state: 变更后的状态; prevState: 变更前的状态
-      console.log('主应用观察者：user 改变前的值为 ', prevState.user)
-      console.log('主应用观察者：登录状态发生改变，改变后的 user 的值为 ', state.user)
+      console.log('主应用观察者：user 改变前的值为 ', prevState)
+      console.log('主应用观察者：登录状态发生改变，改变后的 user 的值为 ', state)
+      localStorage.setItem('userMessage', JSON.stringify({
+        user: state.user,
+        corp: state.corp
+      }))
+      this.refresh = false
+      this.$nextTick(() => {
+        this.refresh = true
+      })
     })
 
-    const { user } = JSON.parse(localStorage.getItem('userMessage'))
-    console.log(user)
-    actions.setGlobalState({ user })
+    const { user, corp } = JSON.parse(localStorage.getItem('userMessage'))
+    actions.setGlobalState({
+      user,
+      corp
+    })
   },
   methods: {
   }
