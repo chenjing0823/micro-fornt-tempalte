@@ -1,0 +1,6 @@
+.home {
+  display: flex;
+}
+.home-card {
+  margin-right: 10px;
+}

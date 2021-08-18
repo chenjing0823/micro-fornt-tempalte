@@ -1,0 +1,20 @@
+{
+  "name": "micro-fornt-tempalte",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenjing0823/micro-fornt-tempalte.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenjing0823/micro-fornt-tempalte/issues"
+  },
+  "homepage": "https://github.com/chenjing0823/micro-fornt-tempalte#readme"
+}
