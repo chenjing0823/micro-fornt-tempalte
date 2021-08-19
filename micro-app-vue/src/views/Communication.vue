@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2021-08-18 20:34:04
  * @LastEditors: jing.chen
- * @LastEditTime: 2021-08-18 21:09:01
+ * @LastEditTime: 2021-08-19 20:03:47
  * @Description: 
 -->
 <template>
@@ -26,6 +26,7 @@
           </el-form-item>
         </el-form>
         <el-button @click="change">改变主应用用户显示</el-button>
+        <el-button @click="openDialog">调用父组件弹窗</el-button>
       </div>
 
     </div>
@@ -50,14 +51,27 @@ export default {
   // 注册观察者函数
   // onGlobalStateChange 第二个参数为 true，表示立即执行一次观察者函数
     actions.onGlobalStateChange(state => {
-      this.userMseeage = state
+      this.triggerState(state)
       console.log('微应用观察者：', state)
     }, true);
   },
   methods: {
     change () {
       const { user, corp } = this.formLabelAlign
-      actions.setGlobalState({ user, corp })
+      actions.setGlobalState({
+        event: 'user-message',
+        value: { user, corp }
+      })
+    },
+    openDialog () {
+      actions.setGlobalState({ event: 'open-dialog' })
+    },
+    triggerState (state) {
+      if (state.event === 'user-message') {
+        this.userMseeage = state.value
+      } else if (state.event === 'open-dialog') {
+        console.log('打开父弹窗')
+      }
     }
   }
 }

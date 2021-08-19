@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2021-08-11 11:14:49
  * @LastEditors: jing.chen
- * @LastEditTime: 2021-08-18 21:12:32
+ * @LastEditTime: 2021-08-19 20:05:01
  * @Description: 主布局
 -->
 <template>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import FrameSidebar from '@/components/layout/frame-sidebar.vue' // 侧边栏
 
 import { getMenu } from '@/api/index'
@@ -65,23 +66,38 @@ export default {
       // state: 变更后的状态; prevState: 变更前的状态
       console.log('主应用观察者：user 改变前的值为 ', prevState)
       console.log('主应用观察者：登录状态发生改变，改变后的 user 的值为 ', state)
-      localStorage.setItem('userMessage', JSON.stringify({
-        user: state.user,
-        corp: state.corp
-      }))
-      this.refresh = false
-      this.$nextTick(() => {
-        this.refresh = true
-      })
+      this.triggerState(state)
     })
 
     const { user, corp } = JSON.parse(localStorage.getItem('userMessage'))
     actions.setGlobalState({
-      user,
-      corp
+      event: 'user-message',
+      value: {
+        user,
+        corp
+      }
     })
   },
   methods: {
+    ...mapActions([
+      'viewMessage'
+    ]),
+    triggerState (state) {
+      if (state.event === 'user-message') {
+        const { user, corp } = state.value
+        localStorage.setItem('userMessage', JSON.stringify({
+          user,
+          corp
+        }))
+        this.refresh = false
+        this.$nextTick(() => {
+          this.refresh = true
+        })
+      } else if (state.event === 'open-dialog') {
+        console.log('打开弹窗')
+        this.viewMessage()
+      }
+    }
   }
 }
 </script>
