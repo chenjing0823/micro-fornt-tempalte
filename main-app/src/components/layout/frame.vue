@@ -2,7 +2,7 @@
  * @Author: jing.chen
  * @Date: 2021-08-11 11:14:49
  * @LastEditors: jing.chen
- * @LastEditTime: 2021-08-18 13:40:04
+ * @LastEditTime: 2021-08-20 10:12:49
  * @Description: 主布局
 -->
 <template>
@@ -40,7 +40,6 @@ import userBlock from './components/user-block.vue'
 
 import { getMenu } from '@/api/index'
 
-import actions from '@/shared/actions'
 export default {
   name: 'index',
 
@@ -58,16 +57,6 @@ export default {
     getMenu().then(res => {
       this.menuList = res
     })
-    // 注册一个观察者函数
-    actions.onGlobalStateChange((state, prevState) => {
-      // state: 变更后的状态; prevState: 变更前的状态
-      console.log('主应用观察者：user 改变前的值为 ', prevState.user)
-      console.log('主应用观察者：登录状态发生改变，改变后的 user 的值为 ', state.user)
-    })
-
-    const { user } = JSON.parse(localStorage.getItem('userMessage'))
-    console.log(user)
-    actions.setGlobalState({ user })
   },
   methods: {
   }
