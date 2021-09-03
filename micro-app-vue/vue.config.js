@@ -1,6 +1,14 @@
+/*
+ * @Author: jing.chen
+ * @Date: 2021-08-18 15:30:39
+ * @LastEditors: jing.chen
+ * @LastEditTime: 2021-09-03 13:58:05
+ * @Description: 
+ */
 const path = require("path");
 
 module.exports = {
+  publicPath: './',
   devServer: {
     // 监听端口
     port: 10200,

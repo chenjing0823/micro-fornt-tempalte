@@ -2,9 +2,15 @@
  * @Author: jing.chen
  * @Date: 2021-08-16 09:15:01
  * @LastEditors: jing.chen
- * @LastEditTime: 2021-08-16 15:18:18
+ * @LastEditTime: 2021-08-20 11:16:00
  * @Description: 微应用列表
  */
+import config from "@/config";
+
+const {
+  REACT_MICRO_APP,
+  VUE_MICRO_APP
+} = config;
 const apps = [
   /**
    * name: 微应用名称 - 具有唯一性
@@ -14,13 +20,13 @@ const apps = [
    */
   {
     name: 'VueMicroApp',
-    entry: '//localhost:10200',
+    entry: VUE_MICRO_APP,
     container: '#microapp',
     activeRule: '/vue'
   },
   {
     name: 'ReactMicroApp',
-    entry: '//localhost:10100',
+    entry: REACT_MICRO_APP,
     container: '#microapp',
     activeRule: '/react'
   }
